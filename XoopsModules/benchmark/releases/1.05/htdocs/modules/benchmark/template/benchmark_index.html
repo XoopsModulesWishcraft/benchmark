@@ -1,0 +1,49 @@
+<h1><{$smarty.const._MN_BENCHMARK_INDEX_H1}></h1>
+<p><{$smarty.const._MN_BENCHMARK_INDEX_P}></p>
+<table style="margin-top:10px; margin-bottom:10px;">
+	<tr class="head">
+		<td style="width:23%;"><a href="<{$php_self}>?op=tests&fct=list"><{$smarty.const._MN_BENCHMARK_INDEX_TESTS}></a></td>
+		<td><strong><{$tests}></strong></td>
+		<td><a href="<{$php_self}>?op=tests&fct=new"><{$smarty.const._MN_BENCHMARK_NEW_TESTS}></td>
+	</tr>
+	<tr class="even">
+		<td style="width:23%;"><a href="<{$php_self}>?op=results&fct=list"><{$smarty.const._MN_BENCHMARK_INDEX_RESULTS}></a></td>
+		<td colspan='2'><strong><{$results}></strong></td>
+	</tr>
+	<tr class="odd">
+		<td style="width:23%;"><a href="<{$php_self}>?op=fields&fct=list"><{$smarty.const._MN_BENCHMARK_INDEX_FIELDS}></a></td>
+		<td><strong><{$fields}></strong></td>
+		<td><a href="<{$php_self}>?op=fields&fct=new"><{$smarty.const._MN_BENCHMARK_NEW_FIELDS}></td>
+	</tr>
+	<tr class="even">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TABLES}></td>
+		<td colspan='2'><strong><{$tables}></strong></td>
+	</tr>
+	<tr class="odd">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_SECONDS}></td>
+		<td colspan='2'><strong><{$total_seconds}></strong></td>
+	</tr>
+	<tr class="even">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_FIELDS}></td>
+		<td colspan='2'><strong><{$total_fields}></strong></td>
+	</tr>
+	<tr class="odd">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_LENGTH}></td>
+		<td colspan='2'><strong><{$total_length}></strong></td>
+	</tr>
+	<tr class="even">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_RECORDS}></td>
+		<td colspan='2'><strong><{$total_records}></strong></td>
+	</tr>
+	<tr class="odd">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_COMMON}></td>
+		<td colspan='2'><strong><{$total_common}></strong></td>
+	</tr>
+	<tr class="even">
+		<td style="width:23%;"><{$smarty.const._MN_BENCHMARK_INDEX_TOTAL_BOOT}></td>
+		<td colspan='2'><strong><{$total_boot}></strong></td>
+	</tr>
+</table>
+<h1><{$smarty.const._MN_BENCHMARK_NEW_TEST_H1}></h1>
+<p><{$smarty.const._MN_BENCHMARK_NEW_TEST_P}></p>
+<{$form]>
