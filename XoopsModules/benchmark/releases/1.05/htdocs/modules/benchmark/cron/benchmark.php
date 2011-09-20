@@ -2,12 +2,11 @@
 
 	require ('header.php');
 	
-	/*if ($currently = XoopsCache::read('benchmark_currently_doing_test'))
+	if ($currently = XoopsCache::read('benchmark_currently_doing_test'))
 		exit;
 	else 
-		XoopsCache::write('benchmark_currently_doing_test', microtime(true));
-	*/
-	
+		XoopsCache::write('benchmark_currently_doing_test', microtime(true), 1200);
+		
 	if (!$tid = XoopsCache::read('benchmark_current_test')) {
 		$criteria = new CriteriaCompo(new Criteria('ended', '0', '='));
 		$criteria->add(new Criteria('started', '0', '='));
