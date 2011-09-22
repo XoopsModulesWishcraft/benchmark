@@ -93,8 +93,8 @@ class BenchmarkTables extends XoopsObject
     		}
     	}
     	$sql .= ") ENGINE=".$this->getVar('engine').(strlen($this->getVar('charset'))>0?" DEFAULT CHARSET=".$this->getVar('charset'):"");
-    	return array('drop'=>array($this->getVar('tbid')=>array($this->getVar('name')=>'DROP TABLE `'.$GLOBALS['xoopsDB']->prefix($this->getVar('name')).'`')),
-    				 'create'=>array($this->getVar('tbid')=>array($this->getVar('name')=>$sql)));
+    	@$GLOBALS['xoopsDB']->queryF('DROP TABLE `'.$GLOBALS['xoopsDB']->prefix($this->getVar('name')).'`');
+    	return array('create'=>array($this->getVar('tbid')=>array($this->getVar('name')=>$sql)));
     }
 
     function getInsertArray($number=1) {
