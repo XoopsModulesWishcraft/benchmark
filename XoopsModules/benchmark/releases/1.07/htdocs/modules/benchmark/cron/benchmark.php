@@ -187,7 +187,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['create_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['create_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['create_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_create')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -316,7 +316,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['select_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['select_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['select_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_select')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -448,7 +448,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['insert_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['insert_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['insert_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_insert')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -583,7 +583,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['update_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['update_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['update_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_update')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -715,7 +715,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['update_all_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['update_all_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['update_all_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_updateall')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -847,7 +847,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['delete_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['delete_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['delete_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_delete')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -980,7 +980,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['delete_all_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['delete_all_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['delete_all_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_deleteall')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -1112,7 +1112,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['alter_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['alter_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['alter_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_alter')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -1247,7 +1247,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['rename_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['rename_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['rename_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_rename')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
@@ -1385,7 +1385,7 @@
 							}
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['smarty_tests_num']) {
-								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['smarty_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
+								echo (isset($_SERVER['HTTP_HOST'])?'<br/>':"\n").'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['smarty_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
 								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_smarty')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
