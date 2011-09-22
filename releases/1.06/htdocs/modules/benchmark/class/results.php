@@ -103,7 +103,7 @@ class BenchmarkResults extends XoopsObject
 		return $this;
 	}
 	
-	function toArray() {
+	function toArray($simple=true) {
 		$ret = parent::toArray();
 		foreach($ret as $field => $value) {
 			if(defined($value))
@@ -116,6 +116,9 @@ class BenchmarkResults extends XoopsObject
 		if ($this->getVar('actioned')>0)
 			$ret['dates']['actioned'] = date(_DATESTRING, $this->getVar('actioned'));
 		
+		if ($simple==true)
+			return $ret;
+			
 		if ($this->getVar('tbid')<>0) {
 			$table = $this->_tbHandler->get($this->getVar('tbid'));
 			$ret['table'] = $table->toArray();

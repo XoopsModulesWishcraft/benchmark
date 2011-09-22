@@ -295,7 +295,7 @@ class BenchmarkTests extends XoopsObject
 		return $this;
 	}
 	
-	function toArray($type=false) {
+	function toArray($simple=true) {
 		$ret = parent::toArray();
 		
 		foreach($ret as $field => $value) {
@@ -303,9 +303,6 @@ class BenchmarkTests extends XoopsObject
 				$ret[$field] = constant($value);
 		}
 		
-		if ($type==true)
-			return $ret;
-			
 		if ($this->getVar('begin')>0)
 			$ret['dates']['begin'] = date(_DATESTRING, $this->getVar('begin'));
 		if ($this->getVar('started')>0)
@@ -359,6 +356,9 @@ class BenchmarkTests extends XoopsObject
 				
 		$myts = MyTextSanitizer::getInstance();
 		$ret['note'] = $myts->displayTarea($this->getVar('note'), true);
+
+		if ($simple==true)
+			return $ret;
 		
 		foreach(array('create','select','insert','update','updateall','delete','deleteall','alter','rename','smarty') as $mode) {
 			if (count($this->getVar('tbids_'.$mode))>0) {
