@@ -94,6 +94,8 @@
 		}
 	}
 	
+	set_time_limit(3600);
+	
 	$test = $tests_handler->get($tid);
 			
 	$engines = $GLOBALS['xoopsModuleConfig']['engines'];
@@ -689,7 +691,7 @@
 							$test->setVar('stage', '_MI_BENCHMARK_WAIT');
 							$sql=array();
 							$tbids=array();
-							foreach($engines as $engine) {
+							foreach(array('MYISAM') as $engine) {
 								$table = $tables_handler->designTable($test->getVar('tid'), $test->getVar('test'), $fields, $engine, $charset);
 								benchmark_chainedSQL($table->getCreateTable());
 								for($i=0;$i<$GLOBALS['xoopsModuleConfig']['delete_records_num'];$i=$i+10) {
@@ -804,7 +806,7 @@
 							$test->setVar('stage', '_MI_BENCHMARK_WAIT');
 							$sql=array();
 							$tbids=array();
-							foreach($engines as $engine) {
+							foreach(array('MYISAM') as $engine) {
 								$table = $tables_handler->designTable($test->getVar('tid'), $test->getVar('test'), $fields, $engine, $charset);
 								benchmark_chainedSQL($table->getCreateTable());
 								for($i=0;$i<$GLOBALS['xoopsModuleConfig']['delete_all_records_num'];$i=$i+10) {
