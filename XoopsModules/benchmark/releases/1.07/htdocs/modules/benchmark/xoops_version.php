@@ -418,6 +418,54 @@ $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = 18;
 
 $i++;
+$modversion['config'][$i]['name'] = 'fields_random';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_FIELDS_RANDOM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_FIELDS_RANDOM_DESC';
+$modversion['config'][$i]['formtype'] = 'yesno';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = false;
+
+$i++;
+$modversion['config'][$i]['name'] = 'fields_random_minimum';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_FIELDS_RANDOM_MINIMUM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_FIELDS_RANDOM_MINIMUM_DESC';
+$modversion['config'][$i]['formtype'] = 'text';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = mt_rand(1,8);
+
+$i++;
+$modversion['config'][$i]['name'] = 'fields_random_maximum';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_FIELDS_RANDOM_MAXIMUM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_FIELDS_RANDOM_MAXIMUM_DESC';
+$modversion['config'][$i]['formtype'] = 'text';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = mt_rand(9,21);
+
+$i++;
+$modversion['config'][$i]['name'] = 'records_random';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_RECORDS_RANDOM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_RECORDS_RANDOM_DESC';
+$modversion['config'][$i]['formtype'] = 'yesno';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = false;
+
+$i++;
+$modversion['config'][$i]['name'] = 'records_random_minimum';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_RECORDS_RANDOM_MINIMUM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_RECORDS_RANDOM_MINIMUM_DESC';
+$modversion['config'][$i]['formtype'] = 'text';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = mt_rand(1,8);
+
+$i++;
+$modversion['config'][$i]['name'] = 'records_random_maximum';
+$modversion['config'][$i]['title'] = '_MI_BENCHMARK_RECORDS_RANDOM_MAXIMUM';
+$modversion['config'][$i]['description'] = '_MI_BENCHMARK_RECORDS_RANDOM_MAXIMUM_DESC';
+$modversion['config'][$i]['formtype'] = 'text';
+$modversion['config'][$i]['valuetype'] = 'int';
+$modversion['config'][$i]['default'] = mt_rand(9,21);
+
+$i++;
 $modversion['config'][$i]['name'] = 'table_name';
 $modversion['config'][$i]['title'] = '_MI_BENCHMARK_TABLE_NAME';
 $modversion['config'][$i]['description'] = '_MI_BENCHMARK_TABLE_NAME_DESC';

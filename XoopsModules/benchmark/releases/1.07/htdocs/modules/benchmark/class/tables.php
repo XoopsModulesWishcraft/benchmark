@@ -182,6 +182,9 @@ class BenchmarkTables extends XoopsObject
     
     function getInsertIntoTable($number=1) {
     	$sql = array();
+        if ($GLOBALS['xoopsModuleConfig']['records_random']) {
+    		$number = $number + mt_rand($GLOBALS['xoopsModuleConfig']['records_random_minimum'], $GLOBALS['xoopsModuleConfig']['records_random_maximum']); 
+    	}
     	for($c=0;$c<=$number;$c++) {
 	    	$criteria= new CriteriaCompo(new Criteria('required', '_YES'));
 	    	$criteria->add(new Criteria('primarykey', '_NO'));
@@ -377,19 +380,23 @@ class BenchmarkTablesHandler extends XoopsPersistableObjectHandler
     	// Gets Table Name
     	$name = strtolower($GLOBALS['xoopsModuleConfig']['table_name'].(strlen($GLOBALS['xoopsModuleConfig']['table_name'])>0?"_":"").$tid.'_'.constant($test.'_TABLENAME').'_'.$engine.'_'.$index);
     	// Gets Fields Array
+    	if ($GLOBALS['xoopsModuleConfig']['fields_random']) {
+    		$fields = $fields + mt_rand($GLOBALS['xoopsModuleConfig']['fields_random_minimum'], $GLOBALS['xoopsModuleConfig']['fields_random_maximum']); 
+    	}
     	$fids = array();
 	    switch($GLOBALS['xoopsModuleConfig']['spectrum']) {
 	    	default:
 	    	case 'random':
-			    $criteria = new CriteriaCompo(new Criteria('type', "('".implode("','",$GLOBALS['xoopsModuleConfig']['field_types'])."')", 'IN'));
+	    		$criteria = new CriteriaCompo(new Criteria('type', "('".implode("','",$GLOBALS['xoopsModuleConfig']['field_types'])."')", 'IN'));
 			   	$criteria->add(new Criteria('required', '_NO'));
-		    	$criteria->setSort('RAND()');
-		    	$criteria->setLimit($fields);
+		    	$criteria->setSort('RAND()');	    		
 		    	while (count($fids)<$fields) {	    	
 		    		foreach ($this->_fHandler->getObjects($criteria, true) as $fid => $field) {
-		    			$fieldname = strtolower($field->getVar('name').'_'.$fid.'_'.(sizeof($fids)+1).'_'.$index.'_'.$tid);
 		    			if (count($fids)<$fields) {
-		    				$fids[$fieldname] = array('name' => $fieldname, 'type' => $field->getVar('type'), 'size' => $field->getVar('size'), 'altered_type' => $field->getVar('altered_type'), 'fid' => $fid);
+			    			$fieldname = strtolower($field->getVar('name').'_'.$fid.'_'.(sizeof($fids)+1).'_'.$index.'_'.$tid);
+			    			if (count($fids)<$fields) {
+			    				$fids[$fieldname] = array('name' => $fieldname, 'type' => $field->getVar('type'), 'size' => $field->getVar('size'), 'altered_type' => $field->getVar('altered_type'), 'fid' => $fid);
+			    			}
 		    			}
 		    		}
 		    	}
@@ -398,11 +405,15 @@ class BenchmarkTablesHandler extends XoopsPersistableObjectHandler
 	    		$criteria = new CriteriaCompo(new Criteria('type', "('".implode("','",$GLOBALS['xoopsModuleConfig']['field_types'])."')", 'IN'));
 			   	$criteria->add(new Criteria('required', '_NO'));
 		    	$criteria->setSort('RAND()');
-	    		foreach ($this->_fHandler->getObjects($criteria, true) as $fid => $field) {
-	    			$fieldname = strtolower($field->getVar('name').'_'.$fid.'_'.(sizeof($fids)+1).'_'.$index.'_'.$tid);
-	    			$fids[$fieldname] = array('name' => $fieldname, 'type' => $field->getVar('type'), 'size' => $field->getVar('size'), 'altered_type' => $field->getVar('altered_type'), 'fid' => $fid);
-	    		}
-	    	
+		    	while (count($fids)<$fields) {
+		    		foreach ($this->_fHandler->getObjects($criteria, true) as $fid => $field) {
+		    			if (count($fids)<$fields) {
+			    			$fieldname = strtolower($field->getVar('name').'_'.$fid.'_'.(sizeof($fids)+1).'_'.$index.'_'.$tid);
+			    			$fids[$fieldname] = array('name' => $fieldname, 'type' => $field->getVar('type'), 'size' => $field->getVar('size'), 'altered_type' => $field->getVar('altered_type'), 'fid' => $fid);
+		    			}
+		    		}
+		    	}
+				break;
 	    }
 
 	    $object = $this->create();

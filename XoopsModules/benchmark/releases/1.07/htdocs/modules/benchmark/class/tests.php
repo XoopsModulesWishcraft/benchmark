@@ -38,7 +38,7 @@ class BenchmarkTests extends XoopsObject
         $this->initVar('tbids_alter', XOBJ_DTYPE_ARRAY, array(), false);
         $this->initVar('tbids_rename', XOBJ_DTYPE_ARRAY, array(), false);
         $this->initVar('tbids_smarty', XOBJ_DTYPE_ARRAY, array(), false);
-        $this->initVar('min_create_time', XOBJ_DTYPE_DECIMAL, 0, false);
+        $this->initVar('avg_create_time', XOBJ_DTYPE_DECIMAL, 0, false);
         $this->initVar('avg_select_time', XOBJ_DTYPE_DECIMAL, 0, false);
         $this->initVar('avg_insert_time', XOBJ_DTYPE_DECIMAL, 0, false);
         $this->initVar('avg_update_time', XOBJ_DTYPE_DECIMAL, 0, false);

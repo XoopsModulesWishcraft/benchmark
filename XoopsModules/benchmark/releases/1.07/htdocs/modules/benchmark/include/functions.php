@@ -231,7 +231,7 @@
 				case 'varchar':
 				case 'mediumtext':
 				case 'text':
-					return (string)benchmark_genString(mt_rand($field->getVar('size')*0.1, $field->getVar('size')));
+					return (string)benchmark_genString(mt_rand($field->getVar('size')*0.159, $field->getVar('size')));
 					break;
 				case 'date':
 					return date('Y-m-d', mt_rand(1, time()));
