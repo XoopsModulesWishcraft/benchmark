@@ -501,7 +501,7 @@ class BenchmarkTesterHandler extends XoopsPersistableObjectHandler
         return $object->getVar('id');
     }
 
-    function delete(&$object, $force = false)
+    function delete(&$object, $force = true)
     {
     	$GLOBALS['timer']['delete']['start'] = microtime(true);
         $whereclause = "`" . 'id' . "` = " . $GLOBALS['xoopsDB']->quote($object->getVar('id'));
