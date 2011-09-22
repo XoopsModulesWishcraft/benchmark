@@ -295,7 +295,7 @@ class BenchmarkTests extends XoopsObject
 		return $this;
 	}
 	
-	function toArray($simple=true) {
+	function toArray($simple=false) {
 		$ret = parent::toArray();
 		
 		foreach($ret as $field => $value) {
@@ -315,7 +315,10 @@ class BenchmarkTests extends XoopsObject
 			$ret['dates']['updated'] = date(_DATESTRING, $this->getVar('updated'));
 		if ($this->getVar('actioned')>0)
 			$ret['dates']['actioned'] = date(_DATESTRING, $this->getVar('actioned'));
-		
+
+		if ($simple==true)
+			return $ret;
+			
 		$id = $this->getVar('tid');
 		if (empty($id)) $id = '0';
 		
@@ -356,10 +359,7 @@ class BenchmarkTests extends XoopsObject
 				
 		$myts = MyTextSanitizer::getInstance();
 		$ret['note'] = $myts->displayTarea($this->getVar('note'), true);
-
-		if ($simple==true)
-			return $ret;
-		
+	
 		foreach(array('create','select','insert','update','updateall','delete','deleteall','alter','rename','smarty') as $mode) {
 			if (count($this->getVar('tbids_'.$mode))>0) {
 				$tables = $this->_tbHandler->getObjects(new Criteria('tbid', '('.implode(',', $this->getVar('tbids_'.$mode)).')', 'IN'), true);
