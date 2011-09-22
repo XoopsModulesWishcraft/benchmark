@@ -188,7 +188,7 @@
 							XoopsCache::write('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'), $testnum, 60*60*24*2);
 							if ($testnum >= $GLOBALS['xoopsModuleConfig']['create_tests_num']) {
 								echo 'Last Test: 100% of ' .$GLOBALS['xoopsModuleConfig']['create_tests_num'].' benchmarking test\'s done'.(isset($_SERVER['HTTP_HOST'])?'<br/>':"\n");
-								XoopsCache::create('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
+								XoopsCache::delete('benchmark_data_'.$test->getVar('tid').'_'.strtolower($test->getVar('test').'_testnumber'));
 								$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_create')).')', 'IN'), true);
 								$results_handler->saveResults($test, $GLOBALS['results'], $tables, $testnum);
 								$test->setVar('took_create_seconds', $test->getVar('took_create_seconds')+$GLOBALS['results'][$test->getVar('test')][0]['took']);
