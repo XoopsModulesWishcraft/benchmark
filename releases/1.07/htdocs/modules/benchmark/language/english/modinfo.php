@@ -421,4 +421,19 @@
     define('_MI_BENCHMARK_RENAME_TABLE_TESTS_DESC', 'This is the number of Rename Table tests to run.');
     define('_MI_BENCHMARK_CREATE_TABLE_TESTS', 'Number of Create Table tests to run');
     define('_MI_BENCHMARK_CREATE_TABLE_TESTS_DESC', 'This is the number of Create Table tests to run.');
+    
+    //Version 1.08
+    //Preferences
+    define('_MI_BENCHMARK_FIELDS_RANDOM', 'Add random number of fields to field number?');
+    define('_MI_BENCHMARK_FIELDS_RANDOM_DESC', 'If you enable this option a number of fields will be added to the field number specified above.');
+    define('_MI_BENCHMARK_FIELDS_RANDOM_MINIMUM', 'Random minimum for fields');
+    define('_MI_BENCHMARK_FIELDS_RANDOM_MINIMUM_DESC', 'This is the number of the smallest amount of fields added to in the random selection.');
+    define('_MI_BENCHMARK_FIELDS_RANDOM_MAXIMUM', 'Random maximum for fields');
+    define('_MI_BENCHMARK_FIELDS_RANDOM_MAXIMUM_DESC', 'This is the number of the highest amount of fields added to in the random selection.');
+    define('_MI_BENCHMARK_RECORDS_RANDOM', 'Add random number of records to record number?');
+    define('_MI_BENCHMARK_RECORDS_RANDOM_DESC', 'If you enable this option a number of records will be added to the record number specified above.');
+    define('_MI_BENCHMARK_RECORDS_RANDOM_MINIMUM', 'Random minimum for records');
+    define('_MI_BENCHMARK_RECORDS_RANDOM_MINIMUM_DESC', 'This is the number of the smallest amount of records added to in the random selection.');
+    define('_MI_BENCHMARK_RECORDS_RANDOM_MAXIMUM', 'Random maximum for records');
+    define('_MI_BENCHMARK_RECORDS_RANDOM_MAXIMUM_DESC', 'This is the number of the highest amount of records added to in the random selection.');
 ?>
