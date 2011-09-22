@@ -1,0 +1,13 @@
+<{foreach from=$data item=valuea key=keya}>
+	<{foreach from=$valuea item=value key=field}>
+		<div style="width:100%; margin-top:5px;">
+			<div style="float:left; width:35%;">
+				<strong><{$field}></strong>
+			</div>
+			<div style="float:right; width:64%;">
+				<{$value}>
+			</div>
+		</div>
+	<{/foreach}>
+<{/foreach}>
+	
