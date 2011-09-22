@@ -50,8 +50,47 @@
 				}
 				
 		} else {
-			echo 'Nothing to do: '.date('Y-m-d H:i:s').'<br/>';
-			exit(0);
+			$criteria = new CriteriaCompo(new Criteria('test', '_MI_BENCHMARK_FINISHED', '!='));
+			$tests = $tests_handler->getObjects($criteria, false);
+			if (is_object($tests[0])) {
+				$tid = $tests[0]->getVar('tid');
+				XoopsCache::write('benchmark_current_test', $tid);
+				$tests[0]->setVar('started', time());
+				$tests_handler->insert($tests[0], true);
+				
+				xoops_loadLanguage('email', $GLOBALS['xoopsModule']->getVar('dirname'));
+				
+				$xoopsMailer =& getMailer();
+				$xoopsMailer->setHTML(true);
+				$xoopsMailer->setTemplateDir($GLOBALS['xoops']->path('/modules/benchmark/language/'.$GLOBALS['xoopsConfig']['language'].'/mail_templates/'));
+				$xoopsMailer->setTemplate('benchmark_start_test.html');
+				$xoopsMailer->setSubject(sprintf(_EMAIL_BENCHMARK_STARTOFCRON, $tests[0]->getVar('name'), date(_DATESTRING)));
+				
+				foreach(explode('|',$GLOBALS['xoopsModuleConfig']['email_addresses']) as $emailaddy)
+					$xoopsMailer->setToEmails($emailaddy);
+				
+				$xoopsMailer->assign("SITEURL", XOOPS_URL);
+				$xoopsMailer->assign("SITENAME", $GLOBALS['xoopsConfig']['sitename']);
+				$xoopsMailer->assign("NAME", $tests[0]->getVar('name'));
+				$xoopsMailer->assign("TESTING", $tests[0]->getVar('testing'));
+				$xoopsMailer->assign("NOTE", $tests[0]->getVar('note'));
+				$xoopsMailer->assign("STAGE", constant($tests[0]->getVar('stage').'_EMAIL'));
+				$xoopsMailer->assign("TEST", constant($tests[0]->getVar('test').'_EMAIL'));
+				$xoopsMailer->assign("PLATFORM", constant($tests[0]->getVar('platform').'_EMAIL'));
+				$xoopsMailer->assign("BEGIN", ($tests[0]->getVar('begin')==0?'--':date(_DATESTRING, $tests[0]->getVar('begin'))));
+				$xoopsMailer->assign("STARTED", ($tests[0]->getVar('started')==0?'--':date(_DATESTRING, $tests[0]->getVar('started'))));
+				$xoopsMailer->assign("CREATED", ($tests[0]->getVar('created')==0?'--':date(_DATESTRING, $tests[0]->getVar('created'))));
+				$xoopsMailer->assign("UPDATED", ($tests[0]->getVar('updated')==0?'--':date(_DATESTRING, $tests[0]->getVar('updated'))));
+		
+				if ($GLOBALS['xoopsModuleConfig']['send_email'])
+					if(!$xoopsMailer->send() ){
+						xoops_error($xoopsMailer->getErrors(true), _EMAIL_BENCHMARK_SENDERROR);
+					}
+			} else {
+				echo 'Nothing to do: '.date('Y-m-d H:i:s').'<br/>';
+				XoopsCache::delete('benchmark_currently_doing_test');
+				exit(0);
+			}
 		}
 	}
 	
@@ -1047,8 +1086,8 @@
 							}
 							$tables = $tables_handler->getObjects(new Criteria('tbid', "(".implode(",", $test->getVar('tbids_rename')).')', 'IN'), true);
 							$results_handler->saveResults($test, $GLOBALS['results'], $tables);
-							$test->setVar('took_deleteall_seconds', $GLOBALS['results'][$test->getVar('test')][0]['took']);
-							$test->setVar('tests_ran_deleteall', $GLOBALS['results'][$test->getVar('test')][0]['counter']);
+							$test->setVar('took_rename_seconds', $GLOBALS['results'][$test->getVar('test')][0]['took']);
+							$test->setVar('tests_ran_rename', $GLOBALS['results'][$test->getVar('test')][0]['counter']);
 							$test->setVar('stage', '_MI_BENCHMARK_CLEANUP');
 							break;
 						case '_MI_BENCHMARK_CLEANUP':
@@ -1222,7 +1261,10 @@
 					break;
 				case '_MI_BENCHMARK_FINISHED':
 					$test->setVar('ended', time());
-					$test->getHistory();
+					foreach(array('_MI_BENCHMARK_WAIT','_MI_BENCHMARK_CREATE','_MI_BENCHMARK_SELECT','_MI_BENCHMARK_INSERT','_MI_BENCHMARK_UPDATE','_MI_BENCHMARK_UPDATEALL','_MI_BENCHMARK_DELETE','_MI_BENCHMARK_DELETEALL','_MI_BENCHMARK_ALTER','_MI_BENCHMARK_RENAME','_MI_BENCHMARK_SMARTY','_MI_BENCHMARK_FINISHED') as $type) {
+						$test->setVar('test', $type);
+						$test->getHistory();
+					}
 					$tests_handler->insert($test, true);
 					XoopsCache::delete('benchmark_current_test');
 					
