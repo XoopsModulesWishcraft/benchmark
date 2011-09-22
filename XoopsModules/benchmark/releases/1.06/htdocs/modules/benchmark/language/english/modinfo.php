@@ -126,6 +126,7 @@
 	define('_MI_BENCHMARK_XOOPS28', 'XOOPS 2.8.x');
 	define('_MI_BENCHMARK_XOOPS29', 'XOOPS 2.9.x');
 	define('_MI_BENCHMARK_XOOPS30', 'XOOPS 3.0.x');
+	define('_MI_BENCHMARK_XOOPS31', 'XOOPS 3.1.x');
 	define('_MI_BENCHMARK_XOOPSCUBE', 'XoopsCube');
 	define('_MI_BENCHMARK_ICMS', 'ImpressCMS');
 

@@ -319,7 +319,7 @@ class BenchmarkTables extends XoopsObject
 		return $this;
 	}
 	
-	function toArray() {
+	function toArray($simple=false) {
 		$ret = parent::toArray();
 		foreach($ret as $field => $value) {
 			if(defined($value))
@@ -332,6 +332,9 @@ class BenchmarkTables extends XoopsObject
 		if ($this->getVar('actioned')>0)
 			$ret['dates']['actioned'] = date(_DATESTRING, $this->getVar('actioned'));
 		
+		if ($simple==true)
+			return $ret;
+			
 		if (count($this->getVar('fids'))<>0) {
 			$fields = $this->_fHandler->getObjects(new Criteria('fib', '('.implode(',', $this->getVar('fids')).')', 'IN'), true);
 			foreach($fields as $fid => $field)

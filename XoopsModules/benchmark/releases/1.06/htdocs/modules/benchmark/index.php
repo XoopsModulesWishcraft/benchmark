@@ -71,7 +71,7 @@
 						
 					$tests = $tests_handler->getObjects($criteria, true);
 					foreach($tests as $tid => $test) {
-						$GLOBALS['xoopsTpl']->append('tests', $test->toArray());
+						$GLOBALS['xoopsTpl']->append('tests', $test->toArray(true));
 					}
 					$GLOBALS['xoopsTpl']->assign('form', benchmark_test_get_form(false));
 					$GLOBALS['xoopsTpl']->assign('php_self', $_SERVER['PHP_SELF']);
@@ -228,6 +228,8 @@
 
 				case "export":				
 					
+					xoops_loadLanguage('modinfo', 'benchmark');
+					
 					$results_handler =& xoops_getmodulehandler('results', $GLOBALS['xoopsModule']->getVar('dirname'));
 
 					$criteria = $results_handler->getFilterCriteria($filter);
@@ -240,22 +242,44 @@
 					$results = $results_handler->getObjects($criteria, true);
 					foreach($results as $tid => $result) {
 						$out = array();
-						foreach($result->toArray() as $field => $value) {
+						foreach($result->toArray(false) as $field => $value) {
 							switch ($field) {
 								case 'form':
 									break;
-								case 'test':
+								case 'testobj':
 								case 'table':
+								case 'dates':
 									foreach($value as $fieldb => $valueb) {
-										if (is_numeric($valueb)) {
-											$out[$fieldb] = ''.$valueb.',';
-										}elseif (is_string($value)) {
-											$out[$fieldb] = '"'.$valueb.'"';
+										switch ($fieldb) {
+										case 'form':
+											break;
+										case 'dates':
+											foreach($valueb as $fieldc => $valuec) {
+												if (defined($valuec)) {
+													$out[$fieldc] = '"'.constant($valuec).'"';
+												} elseif (is_numeric($valuec)) {
+													$out[$fieldc] = ''.$valuec.',';
+												}elseif (is_string($valuec)) {
+													$out[$fieldc] = '"'.$valuec.'"';
+												}
+											}
+											break;
+										default:
+											if (defined($valueb)) {
+												$out[$fieldb] = '"'.constant($valueb).'"';
+											} elseif (is_numeric($valueb)) {
+												$out[$fieldb] = ''.$valueb.',';
+											}elseif (is_string($valueb)) {
+												$out[$fieldb] = '"'.$valueb.'"';
+											}
+											break;
 										}
 									}
 									break;
 								default:
-									if (is_numeric($value)) {
+									if (defined($value)) {
+										$out[$field] = '"'.constant($value).'"';
+									} elseif (is_numeric($value)) {
 										$out[$field] = ''.$value.',';
 									}elseif (is_string($value)) {
 										$out[$field] = '"'.$value.'"';
@@ -263,8 +287,8 @@
 									break;
 							}
 						}
-						$header = '"'.implode('","', array_keys($out)).'"'."\n";
-						$output .= implode(',', $out)."\n";
+						$header = '"'.implode('","', array_keys($out)).'"'."\r\n";
+						$output .= implode(',', $out)."\r\n";
 					}
 					
 					header('Content-Disposition: attachment; filename="results_'.md5($filter).'.csv"');
