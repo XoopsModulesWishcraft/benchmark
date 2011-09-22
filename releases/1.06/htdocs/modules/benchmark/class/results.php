@@ -177,6 +177,7 @@ class BenchmarkResultsHandler extends XoopsPersistableObjectHandler
     }
     
     function getMinMaxAvgSumValues($test) {
+    	xoops_loadLanguage('modinfo', 'benchmark');
     	$sql = array();
     	switch ($test->getVar('test')){
     		case '_MI_BENCHMARK_CREATE':
