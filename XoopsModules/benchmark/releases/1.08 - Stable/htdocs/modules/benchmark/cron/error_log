@@ -1,0 +1,7 @@
+[23-Sep-2011 07:18:02] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting ')' in /home/chronola/benchmark/public_html/modules/benchmark/cron/benchmark.php on line 56
+[04-Oct-2011 06:04:01] PHP Parse error:  syntax error, unexpected $end, expecting T_STRING or T_VARIABLE or '{' or '$' in /home/chronola/benchmark/public_html/modules/benchmark/cron/benchmark.php on line 677
+[04-Oct-2011 06:24:01] PHP Warning:  Unterminated comment starting line 116 in /home/chronola/benchmark/public_html/kernel/object.php on line 116
+[04-Oct-2011 06:24:02] PHP Parse error:  syntax error, unexpected '*', expecting T_FUNCTION in /home/chronola/benchmark/public_html/kernel/object.php on line 117
+[04-Oct-2011 06:33:01] PHP Parse error:  syntax error, unexpected $end in /home/chronola/benchmark/public_html/kernel/object.php on line 383
+[04-Oct-2011 06:47:01] PHP Parse error:  syntax error, unexpected $end in /home/chronola/benchmark/public_html/modules/benchmark/cron/benchmark.php on line 57
+[04-Oct-2011 11:39:01] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting ')' in /home/chronola/benchmark/public_html/modules/benchmark/cron/benchmark.php on line 917
