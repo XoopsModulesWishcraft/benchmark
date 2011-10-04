@@ -1,0 +1,63 @@
+<h1><{$smarty.const._MN_BENCHMARK_TESTLIST_H1}></h1>
+<p><{$smarty.const._MN_BENCHMARK_TESTLIST_P}></p>
+<div sytle="margin-top:7px; margin-bottom:7px;">
+	<div style="float:right;"><{$pagenav}></div>
+</div>
+<form action="<{$php_self}>">
+<table>
+	<tr class="head">
+		<th><{$tid_th}></th>
+		<th><{$stage_th}></th>
+		<th><{$test_th}></th>
+		<th><{$name_th}></th>
+		<th><{$testing_th}></th>
+		<th><{$begin_th}></th>
+		<th><{$started_th}></th>
+		<th><{$ended_th}></th>
+		<th><{$created_th}></th>
+		<th><{$updated_th}></th>
+		<th><{$actioned_th}></th>
+		<th><{$smarty.const._MN_BENCHMARK_ACTIONS_TH}></th>
+	</tr>
+	<tr class="head">
+		<th><{$filter_tid_th}></th>
+		<th><{$filter_stage_th}></th>
+		<th><{$filter_test_th}></th>
+		<th><{$filter_name_th}></th>
+		<th><{$filter_testing_th}></th>
+		<th><{$filter_begin_th}></th>
+		<th><{$filter_started_th}></th>
+		<th><{$filter_ended_th}></th>
+		<th><{$filter_created_th}></th>
+		<th><{$filter_updated_th}></th>
+		<th><{$filter_actioned_th}></th>
+		<th>&nbsp;</th>
+	</tr>
+	<{foreach item=test from=$tests}>
+	<tr class="<{cycle values='even,odd'}>">
+		<td align='center'><{$test.tid}><{$test.form.id}></td>
+		<td align='center'><{$test.stage}></td>
+		<td align='center'><{$test.test}></td>
+		<td align='center'><{$test.name}></td>
+		<td align='center'><{$test.testing}></td>
+		<td align='center'><{$test.dates.begin}></td>
+		<td align='center'><{$test.dates.started}></td>
+		<td align='center'><{$test.dates.ended}></td>
+		<td align='center'><{$test.dates.created}></td>
+		<td align='center'><{$test.dates.updated}></td>
+		<td align='center'><{$test.dates.actioned}></td>
+		<td align='center'><a href="<{$php_self}>?op=tests&fct=edit&id=<{$test.tid}>"><{$smarty.const._EDIT}></a>&nbsp;|&nbsp;<a href="<{$php_self}>?op=tests&fct=delete&id=<{$test.tid}>"><{$smarty.const._DELETE}></a>&nbsp;|&nbsp;<a href="<{$php_self}>?op=tests&fct=report&id=<{$test.tid}>"><{$smarty.const._MN_BENCHMARK_REPORT}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td colspan="12">&nbsp;</td>
+	</tr>
+</table>
+<input type='hidden' name='op' value='tests'/>
+<input type='hidden' name='fct' value='save'/>
+<input type='hidden' name='start' value='<{$start}>'/>
+<input type='hidden' name='limit' value='<{$limit}>'/>
+<input type='hidden' name='sort' value='<{$sort}>'/>
+<input type='hidden' name='order' value='<{$order}>'/>
+<input type='hidden' name='filter' value='<{$filter}>'/>
+</form>

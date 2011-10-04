@@ -1,0 +1,72 @@
+<h1><{$smarty.const._MN_BENCHMARK_FIELDLIST_H1}></h1>
+<p><{$smarty.const._MN_BENCHMARK_FIELDLIST_P}></p>
+<div sytle="margin-top:7px; margin-bottom:7px;">
+	<div style="float:right;"><{$pagenav}></div>
+</div>
+<form action="<{$php_self}>">
+<table>
+	<tr class="head">
+		<th><{$fid_th}></th>
+		<th><{$name_th}></th>
+		<th><{$create_sql_th}></th>
+		<th><{$type_th}></th>
+		<th><{$alter_sql_th}></th>
+		<th><{$alter_type_th}></th>
+		<th><{$size_th}></th>
+		<th><{$recipricol_th}></th>
+		<th><{$required_th}></th>
+		<th><{$primarykey_th}></th>
+		<th><{$key_th}></th>
+		<th><{$created_th}></th>
+		<th><{$updated_th}></th>
+		<th><{$actioned_th}></th>
+		<th><{$smarty.const._MN_BENCHMARK_ACTIONS_TH}></th>
+	</tr>
+	<tr class="head">
+		<th><{$filter_fid_th}></th>
+		<th><{$filter_name_th}></th>
+		<th><{$filter_create_sql_th}></th>
+		<th><{$filter_type_th}></th>
+		<th><{$filter_alter_sql_th}></th>
+		<th><{$filter_alter_type_th}></th>
+		<th><{$filter_size_th}></th>
+		<th><{$filter_recipricol_th}></th>
+		<th><{$filter_required_th}></th>
+		<th><{$filter_primarykey_th}></th>
+		<th><{$filter_key_th}></th>
+		<th><{$filter_created_th}></th>
+		<th><{$filter_updated_th}></th>
+		<th><{$filter_actioned_th}></th>
+		<th>&nbsp;</th>
+	</tr>
+	<{foreach item=field from=$fields}>
+	<tr class="<{cycle values="even,odd"}>">
+		<td align='center'><{$field.fid}><{$field.form.id}></td>
+		<td align='center'><{$field.form.name}></td>
+		<td align='center'><{$field.form.create_sql}></td>
+		<td align='center'><{$field.form.type}></td>
+		<td align='center'><{$field.form.alter_sql}></td>
+		<td align='center'><{$field.form.alter_type}></td>
+		<td align='center'><{$field.form.size}></td>
+		<td align='center'><{$field.form.recipricol}></td>
+		<td align='center'><{$field.form.required}></td>
+		<td align='center'><{$field.form.primarykey}></td>
+		<td align='center'><{$field.form.key}></td>
+		<td align='center'><{$field.dates.created}></td>
+		<td align='center'><{$field.dates.updated}></td>
+		<td align='center'><{$field.dates.actioned}></td>
+		<td align='center'><a href="<{$php_self}>?op=fields&fct=edit&id=<{$field.fid}>"><{$smarty.const._EDIT}></a>&nbsp;|&nbsp;<{/if}><a href="<{$php_self}>?op=fields&fct=delete&id=<{$field.fid}>"><{$smarty.const._DELETE}></a></td>
+	</tr>
+	<{/foreach}>
+	<tr class="foot">
+		<td colspan="15">&nbsp;</td>
+	</tr>
+</table>
+<input type='hidden' name='op' value='fields'/>
+<input type='hidden' name='fct' value='save'/>
+<input type='hidden' name='start' value='<{$start}>'/>
+<input type='hidden' name='limit' value='<{$limit}>'/>
+<input type='hidden' name='sort' value='<{$sort}>'/>
+<input type='hidden' name='order' value='<{$order}>'/>
+<input type='hidden' name='filter' value='<{$filter}>'/>
+</form>
